@@ -132,7 +132,12 @@ assign UART_DTR = UART_DSR;
 assign UART_RTS = uart ? usart_rts : UART_CTS;
 assign UART_TXD = uart ? usart_so  : midi_tx;
 
-assign USER_OUT  = '1;
+assign USER_OUT[0] = '1;
+assign USER_OUT[2] = '1;
+assign USER_OUT[3] = '1;
+assign USER_OUT[4] = '1;
+assign USER_OUT[5] = '1;
+assign USER_OUT[6] = '1;
 
 assign AUDIO_MIX = 0;
 
@@ -909,8 +914,8 @@ acia midi_acia (
 	.dout     ( midi_acia_data_out ),
 	.irq      ( midi_acia_irq      ),
 
-	.rx       ( UART_RXD           ),
-	.tx       ( midi_tx            ),
+	.rx       ( USER_IN[0]         ),
+	.tx       ( USER_OUT[1]        ),
 
 	// redirected midi interface
 	.dout_strobe ( midi_out_strobe )
